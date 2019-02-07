@@ -11,12 +11,9 @@ const useResources = resource => {
     setResources(res.data);
   };
 
-  useEffect(
-    () => {
-      fetchResource(resource);
-    },
-    [resource]
-  );
+  useEffect(() => {
+    fetchResource(resource);
+  }, [resource]);
 
   return resources;
 };
