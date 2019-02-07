@@ -8,12 +8,25 @@ class ResourceList extends Component {
     axios
       .get(`https://jsonplaceholder.typicode.com/${this.props.resource}`)
       .then(res => {
-        console.log(res.data);
         this.setState({ resources: res.data });
       })
       .catch(err => {
         console.log("Error of it all " + err);
       });
+  }
+
+  async componentDidUpdate(prevProps) {
+    console.log(prevProps);
+    if (prevProps.resource !== this.props.resource) {
+      axios
+        .get(`https://jsonplaceholder.typicode.com/${this.props.resource}`)
+        .then(res => {
+          this.setState({ resources: res.data });
+        })
+        .catch(err => {
+          console.log("Error of it all " + err);
+        });
+    }
   }
 
   render() {
